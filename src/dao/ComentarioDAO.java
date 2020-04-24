@@ -97,7 +97,7 @@ private Connection conexao;
 			}
 			System.out.println("Consulta feita com sucesso");
 		}catch(Exception e) {
-			System.out.println("Erro ao consultar o comentario");
+			System.out.println("Erro ao consultar o comentarioo");
 			e.printStackTrace();
 		}
 	}

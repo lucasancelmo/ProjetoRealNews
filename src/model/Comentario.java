@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
+
 
 public class Comentario implements Serializable {
 	private static final long serialVersionUID = 1L;
