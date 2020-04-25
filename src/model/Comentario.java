@@ -9,7 +9,7 @@ public class Comentario implements Serializable {
 	private String nome;
 	private String texto;
 	
-	public public Comentario() {
+	public Comentario() {
 		
 	}
 	
