@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Comentario;
 
@@ -73,7 +75,7 @@ public class ComentarioDAO {
 		try (PreparedStatement pst = conexao.prepareStatement(sqlUpdate)) {
 			pst.setInt(1, id);
 			ResultSet resultado = pst.executeQuery();
-			
+
 			if (resultado.next()) {
 				comentario = new Comentario();
 
@@ -85,7 +87,7 @@ public class ComentarioDAO {
 				comentario.setId(idComentario);
 				comentario.setNome(nome);
 				comentario.setTexto(texto);
-				
+
 			}
 			System.out.println("Consulta feita com sucesso");
 
@@ -94,6 +96,25 @@ public class ComentarioDAO {
 			e.printStackTrace();
 		}
 		return comentario;
-		
+
+	}
+
+	public List<Comentario> selecionarComentarios(int idNoticia) {
+		List<Comentario> list = new ArrayList<Comentario>();
+		String selecao = "SELECT id, nome, texto FROM comentario WHERE fk_noticia_id = ?";
+		try (PreparedStatement pst = conexao.prepareStatement(selecao); ResultSet rs = pst.executeQuery()) {
+			pst.setInt(1, idNoticia);
+			while (rs.next()) {
+				Comentario c = new Comentario();
+				c.setId(rs.getInt(1));
+				c.setNome(rs.getString(2));
+				c.setTexto(rs.getString(3));
+				list.add(c);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Cadastro de Noticia</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Real News</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link"
+					href="index.html">Home </a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="CadastroNoticia.html">Cadastre uma noticia <span
+						class="sr-only">(current)</span></a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<h1 class="page-header">Cadastre uma noticia</h1>
+		<hr>
+	</div>
+	<div class="container">
+		<form action="CadastroNoticia.do" method="get">
+			<div class="form-group">
+				<label for="titulo">Titulo da Noticia</label> <input type="text"
+					class="form-control" id="titulo" name="titulo" placeholder="Digite o titulo da noticia" required>
+			</div>
+			<hr>
+			<div class="form-group">
+
+				<label for="descricao">Descricao da Noticia</label> <input
+					type="text" class="form-control" id="descricao" name="descricao" placeholder="Digite uma breve descricao da noticia" required>
+			</div>
+			<hr>
+			<div class="form-group">
+
+				<label for="texto">Corpo da Noticia</label>
+				<textarea class="form-control" id="titulo" rows="3" name="texto" placeholder="Digite o conteudo da noticia" required></textarea>
+				<hr>
+			</div>
+			<div class="text-right">
+				<button type="submit" class="btn btn-primary">Salvar
+					noticia</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/jquery-3.5.0.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>
