@@ -31,7 +31,7 @@
 		<hr>
 	</div>
 	<div class="container">
-		<form action="CadastroNoticia.do" method="get">
+		<form action="CadastroNoticia.do" method="get" accept-charset=utf-8>
 			<div class="form-group">
 				<label for="titulo">Titulo da Noticia</label> <input type="text"
 					class="form-control" id="titulo" name="titulo" placeholder="Digite o titulo da noticia" required>
@@ -54,6 +54,9 @@
 					noticia</button>
 			</div>
 		</form>
+	</div>
+	<div class="container">
+		<ul id="results"></ul>
 	</div>
 	<script src="js/jquery-3.5.0.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

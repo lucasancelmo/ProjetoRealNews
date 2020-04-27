@@ -1,26 +1,18 @@
 package service;
 
-import model.Comentario;
+import java.util.List;
+
 import dao.ComentarioDAO;
+import model.Comentario;
 
 public class ComentarioService {
-	
 	ComentarioDAO dao = new ComentarioDAO();
 	
-	public Comentario criar (Comentario comentario) {
+	public int inserirComentario(Comentario comentario) {
 		return dao.inserirComentario(comentario);
 	}
-	
-	public void atualizar (Comentario comentario) {
-		dao.atualizarComentario(comentario);
-	}
-	
-	public void excluir (int id) {
-		dao.DeleteComentario(id);
-	}
-	
-	public Comentario consultar(int id) {
-		return dao.SelectComentario(id);
+	public List<Comentario> selecionarComentarios(int idNoticia){
+		return dao.selecionarComentarios(idNoticia);
 	}
 	
 }

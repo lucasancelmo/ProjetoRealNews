@@ -1,32 +1,26 @@
 package service;
 
-import dao.NoticiaDAO;
-import model.Noticia;
-import java.util.ArrayList;
 import java.util.List;
 
+import dao.NoticiaDAO;
+import model.Noticia;
+
 public class NoticiaService {
-	
 	NoticiaDAO dao = new NoticiaDAO();
-	
-	public Noticia criar (Noticia noticia) {
+	public int inserir(Noticia noticia) {
 		return dao.inserirNoticia(noticia);
 	}
 	
-	public void atualizar (Noticia noticia) {
-		dao.updateNoticia(noticia);
-	}
-	
-	public void delete (Noticia noticia) {
+	public void deleteNoticia(Noticia noticia) {
 		dao.deleteNoticia(noticia);
 	}
-	
-	public Noticia selecionar (int id) {
+	public void updateNoticia(Noticia noticia) {
+		dao.updateNoticia(noticia);
+	}
+	public Noticia selecionarNoticia(int id) {
 		return dao.selecionarNoticia(id);
 	}
-	
-	public List<Noticia> ListaSelecionar (){
+	public List<Noticia> selecionarNoticias(){
 		return dao.selecionarNoticias();
 	}
-	
 }

@@ -12,7 +12,7 @@ import model.Noticia;
 public class NoticiaDAO {
 	Connection conexao = ConnectionFactory.conectar();
 
-	public Noticia inserirNoticia(Noticia noticia) {
+	public int inserirNoticia(Noticia noticia) {
 
 		String inserir = "INSERT INTO noticia (descricao, titulo, texto) VALUES(?, ?, ?)";
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
@@ -32,7 +32,7 @@ public class NoticiaDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return noticia;
+		return noticia.getId();
 	}
 
 	public void deleteNoticia(Noticia noticia) {
