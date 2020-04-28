@@ -35,7 +35,7 @@ public class CadastroComentarioController {
 		
 		Comentario comentario = new Comentario();
 		comentario.setNome(nome);
-		comentario.setTexto(texto);
+		comentario.setTexto(tex);
 		
 		// Instanciar Service
 		
@@ -50,11 +50,10 @@ public class CadastroComentarioController {
 						+ "</head><body>");
 				
 				out.println("Id:" + comentario.getId() + "<br>"
-						+ "Nome: " + comentario.getTitulo() + "<br>"
 										+ "Texto: "+ comentario.getTexto()+"<br> ");
 				out.println("<script> "
 						+ "$(document).ready(function(){"
-						+ "$('#results').append(\"<li>"+ til +"</li>\");"
+						+ "$('#results').append(\"<li>"+ tex +"</li>\");"
 								+ "});"
 						+ "</script>");
 				out.println("<div class=container>"
@@ -63,7 +62,7 @@ public class CadastroComentarioController {
 
 				out.println("</body></html>");
 		
-		request.getRequestDispatcher("CadastroNoticia.html").include(request,  response);
+		request.getRequestDispatcher("ViewNoticia.html").include(request,  response);
 	}
 
 }

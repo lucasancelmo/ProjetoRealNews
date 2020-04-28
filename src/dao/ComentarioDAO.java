@@ -17,7 +17,7 @@ public class ComentarioDAO {
 		this.conexao = conexao;
 	}
 
-	public Comentario inserirComentario(Comentario comentario) {
+	public int inserirComentario(Comentario comentario) {
 
 		String inserir = "INSERT INTO comentario (nome, texto) VALUES(?, ?)";
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
@@ -39,7 +39,7 @@ public class ComentarioDAO {
 			e.printStackTrace();
 
 		}
-		return comentario;
+		return comentario.getId();
 	}
 
 	public void atualizarComentario(Comentario comentario) {
