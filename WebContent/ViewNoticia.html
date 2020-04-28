@@ -36,6 +36,40 @@
 	<div class="container" id="results">
 	
 	</div>
+	<div class = "container" id = "NomeCoemntado">
+	
+	</div>
+	<div class = "container" id = "TextoComentado">
+	
+	</div>
+	
+	<div class="container">
+		<h1 class="page-header">Adicionar comentario</h1>
+		<hr>
+	</div>
+	<div class="container">
+		<form action="CadastroComentario.do" method="get" accept-charset=utf-8>
+			<div class="form-group">
+				<label for="titulo">Nome</label> <input type="text"
+					class="form-control" id="nome" name="nome" placeholder="Digite o seu nome" required>
+			</div>
+			<hr>
+			<div class="form-group">
+
+				<label for="descricao">Comentario</label> <input
+					type="text" class="form-control" id="comentario" name="comentario" placeholder="Digite aqui seu comentario" required>
+			</div>
+			<hr>
+			
+			<div class="text-right">
+				<button type="submit" class="btn btn-primary">Salvar
+					comentario</button>
+			</div>
+		</form>
+	</div>
+	<div class="container">
+		<ul id="results"></ul>
+	</div>
 
 
 	<script src="js/jquery-3.5.0.min.js"></script>

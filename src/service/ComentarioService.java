@@ -15,4 +15,8 @@ public class ComentarioService {
 		return dao.selecionarComentarios(idNoticia);
 	}
 	
+	public Comentario consultaComentario(int id) {
+		return dao.SelectComentario(id);
+	}
+	
 }
