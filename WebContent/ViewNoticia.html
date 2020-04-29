@@ -20,57 +20,56 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="index.html">Home
-						<span class="sr-only">(current)</span>
+				<li class="nav-item active"><a class="nav-link"
+					href="index.html">Home <span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="CadastroNoticia.html">Cadastre uma noticia</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="CadastroNoticia.html">Cadastre uma noticia</a></li>
 			</ul>
 		</div>
 	</nav>
-	<div class="container" id="titulo">
-		
-	</div>
-	<div class="container" id="texto">
-		
-	</div>
-	<div class="container" id="results">
-	
-	</div>
-	<div class = "container" id = "NomeCoemntado">
-	
-	</div>
-	<div class = "container" id = "TextoComentado">
-	
-	</div>
-	
+	<div class="container text-center" id="titulo"></div>
+	<div class="container" id="texto"></div>
+	<hr>
 	<div class="container">
-		<h1 class="page-header">Adicionar comentario</h1>
-		<hr>
+		<h5>Comentarios</h5>
+		<ul class="list-unstyled">
+			<li class="media"><img class="mr-3" src="..."
+				alt="">
+				<div class="media-body" id="Comentarios">
+				
+				</div></li>
+		</ul>
 	</div>
+
+	<hr>
 	<div class="container">
-		<form action="CadastroComentario.do" method="get" accept-charset=utf-8>
-			<div class="form-group">
+		<h5>Adicionar comentario</h5>
+	</div>
+
+	<div class="container">
+		<form action="CadastroComentario.do?id=1" method="get"
+			accept-charset=utf-8>
+			<div class="form-group w-25">
 				<label for="titulo">Nome</label> <input type="text"
-					class="form-control" id="nome" name="nome" placeholder="Digite o seu nome" required>
+					class="form-control" id="nome" name="nome"
+					placeholder="Digite o seu nome" required>
 			</div>
 			<hr>
 			<div class="form-group">
 
-				<label for="descricao">Comentario</label> <input
-					type="text" class="form-control" id="comentario" name="comentario" placeholder="Digite aqui seu comentario" required>
+				<label for="descricao">Comentario</label>
+				<textarea class="form-control" id="titulo" rows="3" name="texto"
+					placeholder="Digite o seu comentario" required></textarea>
 			</div>
-			<hr>
-			
+
+
 			<div class="text-right">
 				<button type="submit" class="btn btn-primary">Salvar
 					comentario</button>
 			</div>
 		</form>
 	</div>
-	<div class="container">
-		<ul id="results"></ul>
-	</div>
-
 
 	<script src="js/jquery-3.5.0.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

@@ -11,18 +11,15 @@ import model.Comentario;
 
 public class ComentarioDAO {
 
-	private Connection conexao;
-
-	public void ComentarioDAO(Connection conexao) {
-		this.conexao = conexao;
-	}
+	Connection conexao = ConnectionFactory.conectar();
 
 	public int inserirComentario(Comentario comentario) {
 
-		String inserir = "INSERT INTO comentario (nome, texto) VALUES(?, ?)";
+		String inserir = "INSERT INTO comentario (nome, texto, fk_noticia_id) VALUES(?, ?, ?)";
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
 			pst.setString(1, comentario.getNome());
 			pst.setString(2, comentario.getTexto());
+			pst.setInt(3, comentario.getFk_noticia_id());
 			pst.execute();
 			System.out.println("Comentario inserido com sucesso");
 
@@ -57,7 +54,7 @@ public class ComentarioDAO {
 	}
 
 	public void DeleteComentario(int id) {
-		String sqlUpdate = "DELETE FROM comentario WHERE id=?";
+		String sqlUpdate = "DELETE FROM comentario WHERE fk_noticia_id=?";
 
 		try (PreparedStatement pst = conexao.prepareStatement(sqlUpdate)) {
 			pst.setInt(1, id);
@@ -70,7 +67,7 @@ public class ComentarioDAO {
 	}
 
 	public Comentario SelectComentario(int id) {
-		String sqlUpdate = "SELECT id,nome, texto FROM comentario WHERE id = ? ";
+		String sqlUpdate = "SELECT id, nome, texto, fk_noticia_id FROM comentario WHERE id = ? ";
 		Comentario comentario = new Comentario();
 		try (PreparedStatement pst = conexao.prepareStatement(sqlUpdate)) {
 			pst.setInt(1, id);
@@ -82,11 +79,12 @@ public class ComentarioDAO {
 				int idComentario = resultado.getInt("id");
 				String nome = resultado.getString("nome");
 				String texto = resultado.getString("texto");
-
+				int fk = resultado.getInt("fk_noticia_id");
 				// Atribuição
 				comentario.setId(idComentario);
 				comentario.setNome(nome);
 				comentario.setTexto(texto);
+				comentario.setFk_noticia_id(fk);
 
 			}
 			System.out.println("Consulta feita com sucesso");
@@ -98,17 +96,20 @@ public class ComentarioDAO {
 		return comentario;
 
 	}
-
+//
 	public List<Comentario> selecionarComentarios(int idNoticia) {
 		List<Comentario> list = new ArrayList<Comentario>();
-		String selecao = "SELECT id, nome, texto FROM comentario WHERE fk_noticia_id = ?";
-		try (PreparedStatement pst = conexao.prepareStatement(selecao); ResultSet rs = pst.executeQuery()) {
+		String selecao = "SELECT id, nome, texto, fk_noticia_id FROM comentario WHERE fk_noticia_id = ?";
+		try (PreparedStatement pst = conexao.prepareStatement(selecao);) {
 			pst.setInt(1, idNoticia);
+			pst.execute();
+			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
 				Comentario c = new Comentario();
 				c.setId(rs.getInt(1));
 				c.setNome(rs.getString(2));
 				c.setTexto(rs.getString(3));
+				c.setFk_noticia_id(rs.getInt(4));
 				list.add(c);
 			}
 

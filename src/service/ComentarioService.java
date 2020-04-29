@@ -11,7 +11,9 @@ public class ComentarioService {
 	public int inserirComentario(Comentario comentario) {
 		return dao.inserirComentario(comentario);
 	}
+	
 	public List<Comentario> selecionarComentarios(int idNoticia){
+		
 		return dao.selecionarComentarios(idNoticia);
 	}
 	

@@ -12,7 +12,7 @@ import service.ComentarioService;
 import model.Comentario;
 
 @WebServlet("/CadastroComentario.do")
-public class CadastroComentarioController {
+public class CadastroComentarioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
@@ -29,6 +29,7 @@ public class CadastroComentarioController {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nome = request.getParameter("nome");
 		String tex = request.getParameter("texto");
+		int idFk = Integer.parseInt(request.getParameter("id"));
 		response.setContentType("text/html");
 		
 		// Instanciar JavaBean
@@ -36,7 +37,7 @@ public class CadastroComentarioController {
 		Comentario comentario = new Comentario();
 		comentario.setNome(nome);
 		comentario.setTexto(tex);
-		
+		comentario.setFk_noticia_id(idFk);
 		// Instanciar Service
 		
 		ComentarioService cs = new ComentarioService();
@@ -45,7 +46,7 @@ public class CadastroComentarioController {
 		
 		//Código para testar resposta apenas
 		
-				out.println("<html><head><title>Cadastro de Noticia</title>"
+				/*out.println("<html><head><title>Cadastro de Noticia</title>"
 						+ "<script src=\"js/jquery-3.5.0.min.js\"></script>"
 						+ "</head><body>");
 				
@@ -60,9 +61,10 @@ public class CadastroComentarioController {
 						+ "<ol id=results></ol>"
 						+ "</div>");
 
-				out.println("</body></html>");
+				out.println("</body></html>");*/
 		
-		request.getRequestDispatcher("ViewNoticia.html").include(request,  response);
+		
+		request.getRequestDispatcher("ViewNoticia.do?id=1").include(request,  response);
 	}
 
 }

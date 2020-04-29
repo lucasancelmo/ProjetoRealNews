@@ -8,7 +8,7 @@ public class Comentario implements Serializable {
 	private  int id;
 	private String nome;
 	private String texto;
-	
+	private int fk_noticia_id;
 	public Comentario() {
 		
 	}
@@ -36,5 +36,13 @@ public class Comentario implements Serializable {
 	}
 	public void setTexto(String texto) {
 		this.texto = texto;
+	}
+
+	public int getFk_noticia_id() {
+		return fk_noticia_id;
+	}
+
+	public void setFk_noticia_id(int fk_noticia_id) {
+		this.fk_noticia_id = fk_noticia_id;
 	}
 }

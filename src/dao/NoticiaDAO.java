@@ -52,6 +52,7 @@ public class NoticiaDAO {
 
 		try (PreparedStatement pst = conexao.prepareStatement(selecionar)) {
 			pst.setInt(1, id);
+			pst.execute();
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				noticia.setId(rs.getInt("id"));
