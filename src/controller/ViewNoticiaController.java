@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.text.StringEscapeUtils;
+
 import model.Comentario;
 import model.Noticia;
 import service.ComentarioService;
@@ -44,18 +46,28 @@ public class ViewNoticiaController extends HttpServlet {
 		NoticiaService ns = new NoticiaService();
 		noticia = ns.selecionarNoticia(id);
 		
+		String escape = StringEscapeUtils.escapeHtml4(noticia.getTexto());
 		
 		String til = "\"<h1 class=\'page-header text-center\'>" + noticia.getTitulo() + "</h1><hr>\"";
-		String tex = "\"<p class=\'text-center text-justify\'>"+ noticia.getTexto() + "</p>\"";
-
+	//	String tex = "\"<p class=\'text-center text-justify\'>"+ escape + "</p>\"";
+		
+		String tex ="`<p class=\'text-center text-justify\'>"+ escape + "</p>`";
+		
+		///////////////////////////////////////
+		
+		String form = "\"<form action=\'CadastroComentario.do' method=\'get\' accept-charset=utf-8><div class=\'form-group w-25\'><label for=\'titulo\'>Nome</label> <input type=\'text\'	class=\'form-control\' id=\'nome\' name=\'nome\'	placeholder=\'Digite o seu nome\' required><input type=\'hidden\' class='form-control' id=\'id\' name=\'id\' value= "+ id + "></div><hr><div class=\'form-group\'><label for=\'descricao\'>Comentario</label><textarea class=\'form-control\' id=\'titulo\' rows=\'3\' name=\'texto\' placeholder=\'Digite o seu comentario\' required></textarea></div><div class=\'text-right\'><button type=\'submit\' class=\'btn btn-primary\'>Salvar comentario</button></div></form>\"";
+		
 		output.println("<script src=\"js/jquery-3.5.0.min.js\"></script>");
+		
+		
+
 		
 		//Funcao jQuery para adicionar o texto na página HTML no elemento selecionado
 		output.println("<script> "
 				+ "$(document).ready(function(){"
 				+ "$('#titulo').append(" + til +");"
 						+ "$('#texto').append("+ tex +");"
-								+ "$('#form').attr('id'," + id + ")"
+								+ "$('#form').append(" + form + ")"
 						+ "});"
 				+ "</script>");
 

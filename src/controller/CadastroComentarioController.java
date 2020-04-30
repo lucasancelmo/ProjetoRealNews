@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,7 +27,9 @@ public class CadastroComentarioController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nome = request.getParameter("nome");
+		System.out.println("Peguei o nome " + nome);
 		String tex = request.getParameter("texto");
+		System.out.println("Peguei o texto " + tex);
 		int idFk = Integer.parseInt(request.getParameter("id"));
 		response.setContentType("text/html");
 		
@@ -42,7 +43,7 @@ public class CadastroComentarioController extends HttpServlet {
 		
 		ComentarioService cs = new ComentarioService();
 		comentario = cs.consultaComentario(cs.inserirComentario(comentario));
-		PrintWriter out = response.getWriter();
+	//	PrintWriter out = response.getWriter();
 		
 		//Código para testar resposta apenas
 		
@@ -63,8 +64,9 @@ public class CadastroComentarioController extends HttpServlet {
 
 				out.println("</body></html>");*/
 		
-		
-		request.getRequestDispatcher("ViewNoticia.do?id=1").include(request,  response);
+		String rd = "ViewNoticia.do?id=" + 1;
+		System.out.println("Passei por aqui");
+		request.getRequestDispatcher(rd).include(request,  response);
 	}
 
 }

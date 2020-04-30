@@ -1,13 +1,13 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import model.Noticia;
 import service.NoticiaService;
@@ -34,16 +34,18 @@ public class CadastroNoticiaController extends HttpServlet {
 		String tex = request.getParameter("texto");
 		response.setContentType("text/html");
 		
+	    String textEscape = tex;
+		
 		//Instanciar javabean
 		Noticia noticia = new Noticia();
 		noticia.setTitulo(til);
 		noticia.setDescricao(desc);
-		noticia.setTexto(tex);
+		noticia.setTexto(textEscape);
 		//Instanciar Service
 		
 		NoticiaService ns = new NoticiaService();
 		noticia = ns.selecionarNoticia(ns.inserir(noticia));
-		PrintWriter out = response.getWriter();
+		
 
 		
 		
@@ -67,7 +69,8 @@ public class CadastroNoticiaController extends HttpServlet {
 				+ "</div>");
 
 		out.println("</body></html>");*/
-		request.getRequestDispatcher("CadastroNoticia.html").include(request,  response);
+		String red = "ViewNoticia.do?id=" + noticia.getId();
+		request.getRequestDispatcher(red).include(request,  response);
 			
 	}
 
