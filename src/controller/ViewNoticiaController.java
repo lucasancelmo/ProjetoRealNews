@@ -48,10 +48,10 @@ public class ViewNoticiaController extends HttpServlet {
 		
 		String escape = StringEscapeUtils.escapeHtml4(noticia.getTexto());
 		
-		String til = "\"<h1 class=\'page-header text-center\'>" + noticia.getTitulo() + "</h1><hr>\"";
-	//	String tex = "\"<p class=\'text-center text-justify\'>"+ escape + "</p>\"";
+		String til = "\"<h1 id=\'tituloview\' class=\'page-header text-center\'>" + noticia.getTitulo() + "</h1><hr>\"";
+		String desc = "\"<p id=\'descview\' hidden>"+ noticia.getDescricao() + "</p>\"";
 		
-		String tex ="`<p class=\'text-center text-justify\'>"+ escape + "</p>`";
+		String tex ="`<p id=\'textoview\' class=\'text-center text-justify\'>"+ escape + "</p>`";
 		
 		///////////////////////////////////////
 		
@@ -67,6 +67,7 @@ public class ViewNoticiaController extends HttpServlet {
 				+ "$(document).ready(function(){"
 				+ "$('#titulo').append(" + til +");"
 						+ "$('#texto').append("+ tex +");"
+								+ "$('#texto').append(" + desc + ");"
 								+ "$('#form').append(" + form + ")"
 						+ "});"
 				+ "</script>");

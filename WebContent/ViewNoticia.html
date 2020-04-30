@@ -6,7 +6,13 @@
 <meta name="viewport" content="width=device-width, initicalscale=1">
 <title>Portal Real News</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
-
+<script>
+$(document).ready(function(){
+	$('#titulomodal').val($('#tituloview').text());
+	$('#textomodal').val($('#textoview').text());
+	$('#descricao').val($('#descview').text());
+});
+</script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -28,17 +34,64 @@
 			</ul>
 		</div>
 	</nav>
+	<!-- Botao para ativar Modal  -->
+	<div class="text-right">
+		<button type="button" class="btn btn-dark" data-toggle="modal"
+			data-target="#exampleModalLong">Editar</button>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalLong" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLongTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Editar
+						noticia</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Fechar">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="update" action="#" method="get" accept-charset=utf-8>
+						<div class="form-group">
+							<label for="titulo">Titulo da Noticia</label> <input type="text"
+								class="form-control" id="titulomodal" name="titulo"
+								placeholder="Digite o titulo da noticia" required>
+						</div>
+						<div class="form-group">
+
+							<label for="descricaomodal">Descricao da Noticia</label> <input
+								type="text" class="form-control" id="descricao" name="descricao"
+								placeholder="Digite uma breve descricao da noticia" required>
+						</div>
+						<div class="form-group">
+
+							<label for="texto">Corpo da Noticia</label>
+							<textarea class="form-control" id="textomodal" rows="3" name="texto"
+								placeholder="Digite o conteudo da noticia" required></textarea>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Salvar</button>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- Titulo -->
 	<div class="container text-center" id="titulo"></div>
 	<div class="container" id="texto"></div>
 	<hr>
 	<div class="container">
 		<h5>Comentarios</h5>
 		<ul class="list-unstyled">
-			<li class="media"><img class="mr-3" src="..."
-				alt="">
-				<div class="media-body" id="Comentarios">
-				
-				</div></li>
+			<li class="media"><img class="mr-3" src="..." alt="">
+				<div class="media-body" id="Comentarios"></div></li>
 		</ul>
 	</div>
 
@@ -47,9 +100,7 @@
 		<h5>Adicionar comentario</h5>
 	</div>
 
-	<div class="container" id="form">
-
-	</div>
+	<div class="container" id="form"></div>
 
 	<script src="js/jquery-3.5.0.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
