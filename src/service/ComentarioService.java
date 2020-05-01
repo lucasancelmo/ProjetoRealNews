@@ -20,5 +20,8 @@ public class ComentarioService {
 	public Comentario consultaComentario(int id) {
 		return dao.SelectComentario(id);
 	}
+	public void deleteComentario(int id) {
+		dao.DeleteComentario(id);
+	}
 	
 }

@@ -1,19 +1,25 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import service.ComentarioService;
+
 import model.Comentario;
+import service.ComentarioService;
+import service.NoticiaService;
 
-@WebServlet("/CadastroComentario.do")
-public class CadastroComentarioController extends HttpServlet {
+/**
+ * Servlet implementation class DeleteNoticiaController
+ */
+@WebServlet("/DeleteNoticia.do")
+public class DeleteNoticiaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -26,24 +32,20 @@ public class CadastroComentarioController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nome = request.getParameter("nome");
-		String tex = request.getParameter("texto");
-		int idFk = Integer.parseInt(request.getParameter("id"));
-		response.setContentType("text/html");
+		int id = Integer.parseInt(request.getParameter("id"));
 		
-		// Instanciar JavaBean
-		
-		Comentario comentario = new Comentario();
-		comentario.setNome(nome);
-		comentario.setTexto(tex);
-		comentario.setFk_noticia_id(idFk);
-		// Instanciar Service
+		NoticiaService ns = new NoticiaService();
 		
 		ComentarioService cs = new ComentarioService();
-		comentario = cs.consultaComentario(cs.inserirComentario(comentario));
+		//Deletar todos os comentarios da noticia antes de deletar a noticia
+		List<Comentario> cm = new ArrayList<Comentario>();
+		cm = cs.selecionarComentarios(id);
+		if(cm.size() > 0) {
+			cs.deleteComentario(id);
+		}
+		ns.deleteNoticia(id);
 		
-		String rd = "ViewNoticia.do?id=" + idFk;
-		request.getRequestDispatcher(rd).include(request,  response);
+		response.sendRedirect("index.html");
 	}
 
 }

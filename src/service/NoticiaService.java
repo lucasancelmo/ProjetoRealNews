@@ -11,8 +11,8 @@ public class NoticiaService {
 		return dao.inserirNoticia(noticia);
 	}
 	
-	public void deleteNoticia(Noticia noticia) {
-		dao.deleteNoticia(noticia);
+	public void deleteNoticia(int id) {
+		dao.deleteNoticia(id);
 	}
 	public void updateNoticia(Noticia noticia) {
 		dao.updateNoticia(noticia);

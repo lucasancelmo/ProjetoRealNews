@@ -53,22 +53,25 @@ public class ViewNoticiaController extends HttpServlet {
 		
 		String tex ="`<p id=\'textoview\' class=\'text-center text-justify\'>"+ escape + "</p>`";
 		
-		///////////////////////////////////////
-		
-		String form = "\"<form action=\'CadastroComentario.do' method=\'get\' accept-charset=utf-8><div class=\'form-group w-25\'><label for=\'titulo\'>Nome</label> <input type=\'text\'	class=\'form-control\' id=\'nome\' name=\'nome\'	placeholder=\'Digite o seu nome\' required><input type=\'hidden\' class='form-control' id=\'id\' name=\'id\' value= "+ id + "></div><hr><div class=\'form-group\'><label for=\'descricao\'>Comentario</label><textarea class=\'form-control\' id=\'titulo\' rows=\'3\' name=\'texto\' placeholder=\'Digite o seu comentario\' required></textarea></div><div class=\'text-right\'><button type=\'submit\' class=\'btn btn-primary\'>Salvar comentario</button></div></form>\"";
+		String form = "\"<form action=\'CadastroComentario.do' method=\'get\' accept-charset=utf-8><div class=\'form-group w-25\'><label for=\'titulo\'>Nome</label> <input type=\'text\'	class=\'form-control\' id=\'nome\' name=\'nome\'	placeholder=\'Digite o seu nome\' required><input type=\'hidden\' class='form-control' id=\'id\' name=\'id\' value= "+ id + "></div><hr><div class=\'form-group\'><label for=\'descricao\'>Comentario</label><textarea class=\'form-control\' id=\'titulo\' rows=\'3\' name=\'texto\' placeholder=\'Digite o seu comentario\' required></textarea></div><div class=\'text-right\'><button type=\'submit\' class=\'btn btn-dark\'>Salvar comentario</button></div></form>\"";
 		
 		output.println("<script src=\"js/jquery-3.5.0.min.js\"></script>");
 		
-		
+		String hiddenId = "\"<input type=\'hidden\' class='form-control' id=\'id\' name=\'id\' value= "+ id + ">\"";
 
 		
 		//Funcao jQuery para adicionar o texto na página HTML no elemento selecionado
 		output.println("<script> "
 				+ "$(document).ready(function(){"
 				+ "$('#titulo').append(" + til +");"
-						+ "$('#texto').append("+ tex +");"
-								+ "$('#texto').append(" + desc + ");"
-								+ "$('#form').append(" + form + ")"
+				+ "$('#texto').append("+ tex +");"
+				+ "$('#texto').append(" + desc + ");"
+				+ "$('#form').append(" + form + ");"
+				+ "$('#exampleModalLong').css('display', 'block');"
+				+ "$('#updateId').append("+ hiddenId+ ");"
+				+ "$('#excluir').append("+ hiddenId+ ");"
+				+ "$('#update').attr('action', 'UpdateNoticia.do');"
+				+ "$('#exampleModalLong').css('display', 'none');"
 						+ "});"
 				+ "</script>");
 
@@ -83,10 +86,8 @@ public class ViewNoticiaController extends HttpServlet {
 
 			for(Comentario c : cm) {
 				String nom = "\"<p class=\'text-left text-justify\'>"+ c.getNome() + "</p>\"";
-			//	String tex2 = "\"<p class=\'text-left text-justify\'>"+ c.getTexto() + "</p><hr>\"";
 				String tex3 = "\"" +c.getTexto() + "\"" + "+" + "\"<hr>\"";
 				output.println("$('#Comentarios').append(" + nom + "+" + tex3 +");");
-			//	output.println("$('#TextoComentado').append(" + tex2 +");");
 
 			}
 			output.println("});");

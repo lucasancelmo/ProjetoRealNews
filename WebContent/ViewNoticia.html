@@ -7,11 +7,11 @@
 <title>Portal Real News</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script>
-$(document).ready(function(){
-	$('#titulomodal').val($('#tituloview').text());
-	$('#textomodal').val($('#textoview').text());
-	$('#descricao').val($('#descview').text());
-});
+	$(document).ready(function() {
+		$('#titulomodal').val($('#tituloview').text());
+		$('#textomodal').val($('#textoview').text());
+		$('#descricao').val($('#descview').text());
+	});
 </script>
 </head>
 <body>
@@ -34,12 +34,47 @@ $(document).ready(function(){
 			</ul>
 		</div>
 	</nav>
-	<!-- Botao para ativar Modal  -->
 	<div class="text-right">
-		<button type="button" class="btn btn-dark" data-toggle="modal"
-			data-target="#exampleModalLong">Editar</button>
+		<div class="btn-group" role="group" aria-label="Basic example">
+			<!-- Botao para ativar Modal de Delete -->
+
+			<button type="button" class="btn btn-dark" data-toggle="modal"
+				data-target="#deleteModal">Excluir</button>
+
+			<!-- Botao para ativar Modal de Update  -->
+
+			<button type="button" class="btn btn-dark" data-toggle="modal"
+				data-target="#exampleModalLong">Editar</button>
+
+		</div>
 	</div>
-	<!-- Modal -->
+	<!-- Modal Delete -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+		aria-labelledby="deleteModal" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Excluir</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Deseja excluir essa notícia?</p>
+					<form id="excluir" action="DeleteNoticia.do">
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-dark">Sim</button>
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Não</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal Update-->
 	<div class="modal fade" id="exampleModalLong" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalLongTitle"
 		aria-hidden="true">
@@ -60,7 +95,7 @@ $(document).ready(function(){
 								class="form-control" id="titulomodal" name="titulo"
 								placeholder="Digite o titulo da noticia" required>
 						</div>
-						<div class="form-group">
+						<div class="form-group" id="updateId">
 
 							<label for="descricaomodal">Descricao da Noticia</label> <input
 								type="text" class="form-control" id="descricao" name="descricao"
@@ -69,13 +104,13 @@ $(document).ready(function(){
 						<div class="form-group">
 
 							<label for="texto">Corpo da Noticia</label>
-							<textarea class="form-control" id="textomodal" rows="3" name="texto"
-								placeholder="Digite o conteudo da noticia" required></textarea>
+							<textarea class="form-control" id="textomodal" rows="3"
+								name="texto" placeholder="Digite o conteudo da noticia" required></textarea>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-primary">Salvar</button>
+							<button type="submit" class="btn btn-dark">Salvar</button>
 						</div>
 					</form>
 				</div>

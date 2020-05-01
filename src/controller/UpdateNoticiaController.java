@@ -1,19 +1,23 @@
 package controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import service.ComentarioService;
-import model.Comentario;
 
-@WebServlet("/CadastroComentario.do")
-public class CadastroComentarioController extends HttpServlet {
+import org.apache.commons.text.StringEscapeUtils;
+
+import model.Noticia;
+import service.NoticiaService;
+
+/**
+ * Servlet implementation class UpdateNoticiaController
+ */
+@WebServlet("/UpdateNoticia.do")
+public class UpdateNoticiaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -26,24 +30,24 @@ public class CadastroComentarioController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nome = request.getParameter("nome");
-		String tex = request.getParameter("texto");
-		int idFk = Integer.parseInt(request.getParameter("id"));
+		String til = request.getParameter("titulo");
+		String desc = request.getParameter("descricao");
+		String tex = StringEscapeUtils.escapeHtml4(request.getParameter("texto"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		response.setContentType("text/html");
 		
-		// Instanciar JavaBean
+		Noticia n = new Noticia();
+		n.setId(id);
+		n.setTitulo(til);
+		n.setDescricao(desc);
+		n.setTexto(tex);
 		
-		Comentario comentario = new Comentario();
-		comentario.setNome(nome);
-		comentario.setTexto(tex);
-		comentario.setFk_noticia_id(idFk);
-		// Instanciar Service
+		NoticiaService ns = new NoticiaService();
+		ns.updateNoticia(n);
 		
-		ComentarioService cs = new ComentarioService();
-		comentario = cs.consultaComentario(cs.inserirComentario(comentario));
-		
-		String rd = "ViewNoticia.do?id=" + idFk;
+		String rd = "ViewNoticia.do?id=" + id;
 		request.getRequestDispatcher(rd).include(request,  response);
+		
 	}
 
 }

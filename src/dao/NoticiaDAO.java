@@ -35,10 +35,10 @@ public class NoticiaDAO {
 		return noticia.getId();
 	}
 
-	public void deleteNoticia(Noticia noticia) {
+	public void deleteNoticia(int id) {
 		String delete = "DELETE FROM noticia WHERE id = ?";
 		try (PreparedStatement pst = conexao.prepareStatement(delete)) {
-			pst.setInt(1, noticia.getId());
+			pst.setInt(1, id);
 			pst.execute();
 
 		} catch (Exception e) {
@@ -68,7 +68,7 @@ public class NoticiaDAO {
 	}
 
 	public void updateNoticia(Noticia noticia) {
-		String update = "UPDATE noticia SET descricao=?, set titulo=?, set texto=? WHERE id =?";
+		String update = "UPDATE noticia SET descricao=?, titulo=?, texto=? WHERE id =?";
 		try (PreparedStatement pst = conexao.prepareStatement(update)) {
 			pst.setString(1, noticia.getDescricao());
 			pst.setString(2, noticia.getTitulo());
@@ -84,7 +84,9 @@ public class NoticiaDAO {
 	public List<Noticia> selecionarNoticias() {
 		List<Noticia> list = new ArrayList<Noticia>();
 		String selecao = "SELECT id, titulo, descricao, texto FROM noticia";
-		try (PreparedStatement pst = conexao.prepareStatement(selecao); ResultSet rs = pst.executeQuery();) {
+		try (PreparedStatement pst = conexao.prepareStatement(selecao); ) {
+			pst.execute();
+			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
 				Noticia n = new Noticia();
 				n.setId(rs.getInt(1));
